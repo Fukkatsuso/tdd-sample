@@ -1,0 +1,9 @@
+version: "3.7"
+
+services:
+  xunit:
+    build: .
+    container_name: xunit
+    volumes:
+      - .:/tdd/xunit
+    tty: true
