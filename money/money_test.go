@@ -1,12 +1,13 @@
 package money
 
 import (
+	"reflect"
 	"testing"
 )
 
 func assertEquals(t *testing.T, target interface{}, values ...interface{}) {
 	for _, val := range values {
-		if target != val {
+		if !reflect.DeepEqual(target, val) {
 			t.Fatalf("%v != %v", target, val)
 		}
 	}
@@ -27,8 +28,8 @@ func assertFalse(t *testing.T, eval bool) {
 func TestMoney(t *testing.T) {
 	t.Run("multiplication", func(t *testing.T) {
 		five := NewDollar(5)
-		assertEquals(t, *NewDollar(10), *five.Times(2))
-		assertEquals(t, *NewDollar(15), *five.Times(3))
+		assertEquals(t, NewDollar(10), five.Times(2))
+		assertEquals(t, NewDollar(15), five.Times(3))
 	})
 
 	t.Run("equality", func(t *testing.T) {
@@ -41,7 +42,7 @@ func TestMoney(t *testing.T) {
 
 	t.Run("Franc multiplication", func(t *testing.T) {
 		five := NewFranc(5)
-		assertEquals(t, *NewFranc(10), *five.Times(2))
-		assertEquals(t, *NewFranc(15), *five.Times(3))
+		assertEquals(t, NewFranc(10), five.Times(2))
+		assertEquals(t, NewFranc(15), five.Times(3))
 	})
 }

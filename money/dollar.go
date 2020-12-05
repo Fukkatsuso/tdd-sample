@@ -18,6 +18,6 @@ func (dollar *Dollar) Currency() string {
 	return "dollar"
 }
 
-func (dollar *Dollar) Times(multiplier int) *Dollar {
+func (dollar *Dollar) Times(multiplier int) Money {
 	return NewDollar(dollar.amount * multiplier)
 }

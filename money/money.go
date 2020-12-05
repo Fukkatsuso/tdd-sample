@@ -3,6 +3,7 @@ package money
 type Money interface {
 	Amount() int
 	Currency() string
+	Times(multiplier int) Money
 }
 
 func Equals(money, to Money) bool {
