@@ -36,6 +36,7 @@ func TestMoney(t *testing.T) {
 		assertFalse(t, Equals(NewDollar(5), NewDollar(6)))
 		assertTrue(t, Equals(NewFranc(5), NewFranc(5)))
 		assertFalse(t, Equals(NewFranc(5), NewFranc(6)))
+		assertFalse(t, Equals(NewFranc(5), NewDollar(5)))
 	})
 
 	t.Run("Franc multiplication", func(t *testing.T) {

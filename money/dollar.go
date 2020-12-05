@@ -14,6 +14,10 @@ func (dollar *Dollar) Amount() int {
 	return dollar.amount
 }
 
+func (dollar *Dollar) Currency() string {
+	return "dollar"
+}
+
 func (dollar *Dollar) Times(multiplier int) *Dollar {
 	return NewDollar(dollar.amount * multiplier)
 }
