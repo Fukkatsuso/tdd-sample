@@ -1,0 +1,9 @@
+version: "3.7"
+
+services:
+  money:
+    build: .
+    container_name: money
+    volumes:
+      - .:/go/src/github.com/Fukkatsuso/tdd-sample/money
+    tty: true
