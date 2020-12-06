@@ -27,7 +27,7 @@ func assertFalse(t *testing.T, eval bool) {
 
 func TestMoney(t *testing.T) {
 	t.Run("multiplication", func(t *testing.T) {
-		five := (*Dollar)(NewDollar(5))
+		five := NewDollar(5)
 		assertEquals(t, NewDollar(10), five.Times(2))
 		assertEquals(t, NewDollar(15), five.Times(3))
 	})
@@ -41,7 +41,7 @@ func TestMoney(t *testing.T) {
 	})
 
 	t.Run("Franc multiplication", func(t *testing.T) {
-		five := (*Franc)(NewFranc(5))
+		five := NewFranc(5)
 		assertEquals(t, NewFranc(10), five.Times(2))
 		assertEquals(t, NewFranc(15), five.Times(3))
 	})
@@ -49,5 +49,9 @@ func TestMoney(t *testing.T) {
 	t.Run("currency", func(t *testing.T) {
 		assertEquals(t, "USD", NewDollar(1).Currency())
 		assertEquals(t, "CHF", NewFranc(1).Currency())
+	})
+
+	t.Run("different func equality", func(t *testing.T) {
+		assertTrue(t, NewMoney(10, "CHF").Equals(NewFranc(10)))
 	})
 }
