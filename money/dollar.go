@@ -1,23 +1,7 @@
 package money
 
-type Dollar struct {
-	amount int
-}
+type Dollar Money
 
-func NewDollar(amount int) *Dollar {
-	return &Dollar{
-		amount: amount,
-	}
-}
-
-func (dollar *Dollar) Amount() int {
-	return dollar.amount
-}
-
-func (dollar *Dollar) Currency() string {
-	return "dollar"
-}
-
-func (dollar *Dollar) Times(multiplier int) Money {
+func (dollar *Dollar) Times(multiplier int) *Money {
 	return NewDollar(dollar.amount * multiplier)
 }
