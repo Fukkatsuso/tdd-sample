@@ -50,4 +50,25 @@ func TestMoney(t *testing.T) {
 		reduced := bank.Reduce(sum, "USD")
 		assertEquals(t, NewDollar(10), reduced)
 	})
+
+	t.Run("Plus returns Sum", func(t *testing.T) {
+		five := NewDollar(5)
+		result := five.Plus(five)
+		sum := result.(*Sum)
+		assertEquals(t, five, sum.Augend)
+		assertEquals(t, five, sum.Addend)
+	})
+
+	t.Run("reduce Sum", func(t *testing.T) {
+		sum := NewSum(NewDollar(3), NewDollar(4))
+		bank := NewBank()
+		result := bank.Reduce(sum, "USD")
+		assertEquals(t, NewDollar(7), result)
+	})
+
+	t.Run("reduce Money", func(t *testing.T) {
+		bank := NewBank()
+		result := bank.Reduce(NewDollar(1), "USD")
+		assertEquals(t, NewDollar(1), result)
+	})
 }
