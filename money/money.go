@@ -12,11 +12,11 @@ func NewMoney(amount int, currency string) *Money {
 	}
 }
 
-func (money *Money) Times(multiplier int) *Money {
+func (money *Money) Times(multiplier int) Expression {
 	return NewMoney(money.amount*multiplier, money.currency)
 }
 
-func (money *Money) Plus(addend *Money) Expression {
+func (money *Money) Plus(addend Expression) Expression {
 	return NewSum(money, addend)
 }
 

@@ -82,4 +82,13 @@ func TestMoney(t *testing.T) {
 	t.Run("identity rate", func(t *testing.T) {
 		assertEquals(t, 1, NewBank().Rate("USD", "USD"))
 	})
+
+	t.Run("mixed addition", func(t *testing.T) {
+		fiveBucks := (Expression)(NewDollar(5))
+		tenFrancs := (Expression)(NewFranc(10))
+		bank := NewBank()
+		bank.AddRate("CHF", "USD", 2)
+		result := bank.Reduce(fiveBucks.Plus(tenFrancs), "USD")
+		assertEquals(t, NewDollar(10), result)
+	})
 }
