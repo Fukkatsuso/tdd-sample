@@ -35,23 +35,11 @@ func TestMoney(t *testing.T) {
 	t.Run("equality", func(t *testing.T) {
 		assertTrue(t, NewDollar(5).Equals(NewDollar(5)))
 		assertFalse(t, NewDollar(5).Equals(NewDollar(6)))
-		assertTrue(t, NewFranc(5).Equals(NewFranc(5)))
-		assertFalse(t, NewFranc(5).Equals(NewFranc(6)))
 		assertFalse(t, NewFranc(5).Equals(NewDollar(5)))
-	})
-
-	t.Run("Franc multiplication", func(t *testing.T) {
-		five := NewFranc(5)
-		assertEquals(t, NewFranc(10), five.Times(2))
-		assertEquals(t, NewFranc(15), five.Times(3))
 	})
 
 	t.Run("currency", func(t *testing.T) {
 		assertEquals(t, "USD", NewDollar(1).Currency())
 		assertEquals(t, "CHF", NewFranc(1).Currency())
-	})
-
-	t.Run("different func equality", func(t *testing.T) {
-		assertTrue(t, NewMoney(10, "CHF").Equals(NewFranc(10)))
 	})
 }
