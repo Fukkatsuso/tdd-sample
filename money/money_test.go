@@ -91,4 +91,24 @@ func TestMoney(t *testing.T) {
 		result := bank.Reduce(fiveBucks.Plus(tenFrancs), "USD")
 		assertEquals(t, NewDollar(10), result)
 	})
+
+	t.Run("Sum plus Money", func(t *testing.T) {
+		fiveBucks := (Expression)(NewDollar(5))
+		tenFrancs := (Expression)(NewFranc(10))
+		bank := NewBank()
+		bank.AddRate("CHF", "USD", 2)
+		sum := NewSum(fiveBucks, tenFrancs).Plus(fiveBucks)
+		result := bank.Reduce(sum, "USD")
+		assertEquals(t, NewDollar(15), result)
+	})
+
+	t.Run("Sum times", func(t *testing.T) {
+		fiveBucks := (Expression)(NewDollar(5))
+		tenFrancs := (Expression)(NewFranc(10))
+		bank := NewBank()
+		bank.AddRate("CHF", "USD", 2)
+		sum := NewSum(fiveBucks, tenFrancs).Times(2)
+		result := bank.Reduce(sum, "USD")
+		assertEquals(t, NewDollar(20), result)
+	})
 }

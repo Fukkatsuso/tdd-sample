@@ -12,8 +12,12 @@ func NewSum(augend Expression, addend Expression) *Sum {
 	}
 }
 
+func (sum *Sum) Times(multiplier int) Expression {
+	return NewSum(sum.Augend.Times(multiplier), sum.Addend.Times(multiplier))
+}
+
 func (sum *Sum) Plus(addend Expression) Expression {
-	return nil
+	return NewSum(sum, addend)
 }
 
 func (sum *Sum) Reduce(bank *Bank, to string) *Money {
