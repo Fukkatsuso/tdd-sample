@@ -2,6 +2,6 @@ package money
 
 type Franc Money
 
-func (Franc *Franc) Times(multiplier int) *Money {
-	return NewFranc(Franc.amount * multiplier)
+func (franc *Franc) Times(multiplier int) *Money {
+	return NewFranc(franc.amount * multiplier)
 }
