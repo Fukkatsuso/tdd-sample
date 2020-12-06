@@ -20,8 +20,9 @@ func (money *Money) Plus(addend *Money) Expression {
 	return NewSum(money, addend)
 }
 
-func (money *Money) Reduce(to string) *Money {
-	return money
+func (money *Money) Reduce(bank *Bank, to string) *Money {
+	rate := bank.Rate(money.currency, to)
+	return NewMoney(money.amount/rate, to)
 }
 
 func (money *Money) Currency() string {
