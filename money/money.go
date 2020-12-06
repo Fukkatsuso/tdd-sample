@@ -16,6 +16,10 @@ func (money *Money) Times(multiplier int) *Money {
 	return NewMoney(money.amount*multiplier, money.currency)
 }
 
+func (money *Money) Plus(addend *Money) Expression {
+	return NewMoney(money.amount+addend.amount, money.currency)
+}
+
 func (money *Money) Currency() string {
 	return money.currency
 }

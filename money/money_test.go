@@ -42,4 +42,12 @@ func TestMoney(t *testing.T) {
 		assertEquals(t, "USD", NewDollar(1).Currency())
 		assertEquals(t, "CHF", NewFranc(1).Currency())
 	})
+
+	t.Run("simple addition", func(t *testing.T) {
+		five := NewDollar(5)
+		sum := five.Plus(five)
+		bank := NewBank()
+		reduced := bank.Reduce(sum, "USD")
+		assertEquals(t, NewDollar(10), reduced)
+	})
 }
